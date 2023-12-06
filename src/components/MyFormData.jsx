@@ -7,7 +7,7 @@ export default function MyFormData() {
         content_post: "",
         img_post: "",
         category_post: "",
-        tags_post: ""
+        tags_post: []
     };
 
     const [postsList, setPostsList] = useState([]);
@@ -32,6 +32,24 @@ export default function MyFormData() {
         setPostsList(postsList.filter((post) => post.id !== idToRemove));
     }
 
+    function handleTagsPostChange(e) {
+        // recupero il valore del checkbox
+        const value = e.target.value;
+
+        // recupero lo stato della checkbox
+        const checked = e.target.checked;
+
+        let tagsPost = [...formData.tags_post];
+
+        if (checked) {
+            tagsPost.push(value);
+        } else {
+            tagsPost = tagsPost.filter((tag) => tag !== value);
+        }
+
+        updateFormData(tagsPost, 'tags_post');
+    }
+
     return (
         <div className={"container"}>
             <h1 className="text-center">INSERISCI I DATI DEL NUOVO POST</h1>
@@ -50,6 +68,18 @@ export default function MyFormData() {
                         onChange={(e) => updateFormData(e.target.value, "title_post")}
                     ></input>
 
+                    <label htmlFor="imgPost" className="form-label">
+                        <strong>URL Immagine:</strong>
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Inserisci l'URL dell'immagine"
+                        name="img_post"
+                        value={formData.img_post}
+                        onChange={(e) => updateFormData(e.target.value, "img_post")}
+                    ></input>
+
                     <label htmlFor="contentPost" className="form-label">
                         <strong>Contenuto:</strong>
                     </label>
@@ -63,15 +93,39 @@ export default function MyFormData() {
                     ></input>
                 </div>
 
-                <select value={formData.category_post} onChange={(e) => updateFormData(e.target.value, 'category_post')}>
-                    <option value="">--Seleziona la categoria--</option>
-                    <option value="nature_notes" /*selected={formData.category_post === 'nature_notes'}*/>Nature Notes</option>
-                    <option value="travel_tidbits" /*selected={formData.category_post === 'travel_tidbits'}*/>Travel Tidbits</option>
-                    <option value="natures_palette" /*selected={formData.category_post === 'natures_palette'}*/>Nature's Palette</option>
-                    <option value="wayfaring_waves" /*selected={formData.category_post === 'wayfaring_waves'}*/>Wayfaring Waves</option>
-                    <option value="nomad_notes" /*selected={formData.category_post === 'nomad_notes'}*/>Nomad Notes</option>
-                    <option value="sound_bites" /*selected={formData.category_post === 'sound_bites'}*/>Sound Bites</option>
-                </select>
+                <div>
+                    <label htmlFor="categoryPost" className="form-label">
+                        <strong>Categoria:</strong>
+                    </label>
+                    <select value={formData.category_post} onChange={(e) => updateFormData(e.target.value, 'category_post')}>
+                        <option value="">--Seleziona la categoria--</option>
+                        <option value="Nature Notes" /*selected={formData.category_post === 'nature_notes'}*/>Nature Notes</option>
+                        <option value="Travel Tidbits" /*selected={formData.category_post === 'travel_tidbits'}*/>Travel Tidbits</option>
+                        <option value="Nature's Palette" /*selected={formData.category_post === 'natures_palette'}*/>Nature's Palette</option>
+                        <option value="Wayfaring Waves" /*selected={formData.category_post === 'wayfaring_waves'}*/>Wayfaring Waves</option>
+                        <option value="Nomad Notes" /*selected={formData.category_post === 'nomad_notes'}*/>Nomad Notes</option>
+                        <option value="Sound Bites" /*selected={formData.category_post === 'sound_bites'}*/>Sound Bites</option>
+                    </select>
+                </div>
+
+                <label htmlFor="tagsPost" className="form-label">
+                    <strong>Tags:</strong>
+                </label>
+                <div className="flex gap-4">
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('LifeStyle')} value="LifeStyle" onChange={handleTagsPostChange} />#LifeStyle</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('MotivationMonday')} value="MotivationMonday" onChange={handleTagsPostChange} />#MotivationMonday</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('PicOfTheDay')} value="PicOfTheDay" onChange={handleTagsPostChange} />#PicOfTheDay</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('NaturePhotography')} value="NaturePhotography" onChange={handleTagsPostChange} />#NaturePhotography</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('AdventureTime')} value="AdventureTime" onChange={handleTagsPostChange} />#AdventureTime</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('MusicIsLife')} value="MusicIsLife" onChange={handleTagsPostChange} />#MusicIsLife</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('MusicInspiration')} value="MusicInspiration" onChange={handleTagsPostChange} />#MusicInspiration</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('VacationMode')} value="VacationMode" onChange={handleTagsPostChange} />#VacationMode</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('TravelPhotography')} value="TravelPhotography" onChange={handleTagsPostChange} />#TravelPhotography</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('DigitalWorld')} value="DigitalWorld" onChange={handleTagsPostChange} />#DigitalWorld</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('FilmFestival')} value="FilmFestival" onChange={handleTagsPostChange} />#FilmFestival</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('SocialMedia')} value="SocialMedia" onChange={handleTagsPostChange} />#SocialMedia</label>
+                    <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('TagsForLike')} value="TagsForLike" onChange={handleTagsPostChange} />#TagsForLike</label>
+                </div>
 
                 <div>
                     <button type="submit" className="btn btn-primary">
@@ -81,9 +135,9 @@ export default function MyFormData() {
 
             </form>
 
-            <div className="row justify-content-center py-5">
+            <div className={`row justify-content-center py-5`}>
                 {postsList.map((post) => (
-                    <div key={post.id} className={`col-5 mx-2 my-2 card ${style.mod_card}`}>
+                    <div key={post.id} className={`col-5 mx-5 my-5 card ${style.mod_card}`}>
 
                         <img className={style.card_img} src={post.img_post} alt="Post" />
 
@@ -103,8 +157,14 @@ export default function MyFormData() {
                             <h5>Categoria:</h5>
                             <span>{post.category_post}</span>
                         </div>
-                    </div>
 
+                        <div>
+                            <h5>Tag:</h5>
+                            {post.tags_post.map((tag, index) => (
+                                <span key={index}>#{tag} </span>
+                            ))}
+                        </div>
+                    </div>
 
                 ))}
             </div>

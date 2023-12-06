@@ -13,4 +13,12 @@
 
 .mod_card {
     box-shadow: 5px 15px 20px black;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.card_img {
+    width: 100%;
+    object-fit: cover;
+    height: 250px;
 }
