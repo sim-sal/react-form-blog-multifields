@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Header from './components/hEADER.JSX'
 import MyFormData from './components/MyFormData'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <MyFormData />
     </>
   )

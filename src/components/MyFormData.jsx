@@ -52,7 +52,7 @@ export default function MyFormData() {
 
     return (
         <div className={"container"}>
-            <h1 className="text-center">INSERISCI I DATI DEL NUOVO POST</h1>
+            <h1 className="text-center">CREA POST</h1>
 
             <form onSubmit={handleFormSubmit}>
                 <div className="mb-3">
@@ -129,7 +129,7 @@ export default function MyFormData() {
 
                 <div>
                     <button type="submit" className="btn btn-primary">
-                        Submit
+                        Crea Post
                     </button>
                 </div>
 
@@ -141,28 +141,30 @@ export default function MyFormData() {
 
                         <img className={style.card_img} src={post.img_post} alt="Post" />
 
-                        <div className={style.card_header}>
+                        <div className={style.card_main}>
+                            <div className={style.card_header}>
 
-                            <h3>{post.title_post}</h3>
+                                <h3>{post.title_post}</h3>
 
-                            <button className={style.delete_button} onClick={() => removePost(post.id)}>
-                                X
-                            </button>
+                                <button className={style.delete_button} onClick={() => removePost(post.id)}>
+                                    X
+                                </button>
 
-                        </div>
+                            </div>
 
-                        <p>{post.content_post}</p>
+                            <p>{post.content_post}</p>
 
-                        <div>
-                            <h5>Categoria:</h5>
-                            <span>{post.category_post}</span>
-                        </div>
+                            <div>
+                                <h5>Categoria:</h5>
+                                <span>{post.category_post}</span>
+                            </div>
 
-                        <div>
-                            <h5>Tag:</h5>
-                            {post.tags_post.map((tag, index) => (
-                                <span key={index}>#{tag} </span>
-                            ))}
+                            <div>
+                                <h5>Tag:</h5>
+                                {post.tags_post.map((tag, index) => (
+                                    <span key={index}>#{tag} </span>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
