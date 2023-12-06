@@ -4,7 +4,10 @@ import { useState } from "react";
 export default function MyFormData() {
     const initialFormData = {
         title_post: "",
-        content_post: ""
+        content_post: "",
+        img_post: "",
+        category_post: "",
+        tags_post: ""
     };
 
     const [postsList, setPostsList] = useState([]);
@@ -60,22 +63,49 @@ export default function MyFormData() {
                     ></input>
                 </div>
 
-                <button type="submit" className="btn btn-primary">
-                    Submit
-                </button>
+                <select value={formData.category_post} onChange={(e) => updateFormData(e.target.value, 'category_post')}>
+                    <option value="">--Seleziona la categoria--</option>
+                    <option value="nature_notes" /*selected={formData.category_post === 'nature_notes'}*/>Nature Notes</option>
+                    <option value="travel_tidbits" /*selected={formData.category_post === 'travel_tidbits'}*/>Travel Tidbits</option>
+                    <option value="natures_palette" /*selected={formData.category_post === 'natures_palette'}*/>Nature's Palette</option>
+                    <option value="wayfaring_waves" /*selected={formData.category_post === 'wayfaring_waves'}*/>Wayfaring Waves</option>
+                    <option value="nomad_notes" /*selected={formData.category_post === 'nomad_notes'}*/>Nomad Notes</option>
+                    <option value="sound_bites" /*selected={formData.category_post === 'sound_bites'}*/>Sound Bites</option>
+                </select>
+
+                <div>
+                    <button type="submit" className="btn btn-primary">
+                        Submit
+                    </button>
+                </div>
+
             </form>
 
             <div className="row justify-content-center py-5">
                 {postsList.map((post) => (
-                    <div key={post.id} className="col-5 mx-2 my-2 card">
+                    <div key={post.id} className={`col-5 mx-2 my-2 card ${style.mod_card}`}>
+
+                        <img className={style.card_img} src={post.img_post} alt="Post" />
+
                         <div className={style.card_header}>
+
                             <h3>{post.title_post}</h3>
+
                             <button className={style.delete_button} onClick={() => removePost(post.id)}>
                                 X
                             </button>
+
                         </div>
+
                         <p>{post.content_post}</p>
+
+                        <div>
+                            <h5>Categoria:</h5>
+                            <span>{post.category_post}</span>
+                        </div>
                     </div>
+
+
                 ))}
             </div>
         </div>

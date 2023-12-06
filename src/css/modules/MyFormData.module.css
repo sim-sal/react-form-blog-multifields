@@ -10,3 +10,7 @@
     height: 30px;
     border-radius: 20px;
 }
+
+.mod_card {
+    box-shadow: 5px 15px 20px black;
+}
