@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from "../css/modules/MyFormData.module.css";
+
 import { useState } from "react";
 
 export default function MyFormData() {
@@ -57,7 +59,8 @@ export default function MyFormData() {
             <form onSubmit={handleFormSubmit}>
                 <div className="mb-3">
                     <label htmlFor="titlePost" className="form-label">
-                        <strong>Titolo:</strong>
+                        <FontAwesomeIcon icon="fa-solid fa-tornado" />
+                        <strong> Titolo:</strong>
                     </label>
                     <input
                         type="text"
@@ -69,7 +72,8 @@ export default function MyFormData() {
                     ></input>
 
                     <label htmlFor="imgPost" className="form-label">
-                        <strong>URL Immagine:</strong>
+                        <FontAwesomeIcon icon="fa-solid fa-image" />
+                        <strong> URL Immagine:</strong>
                     </label>
                     <input
                         type="text"
@@ -81,7 +85,8 @@ export default function MyFormData() {
                     ></input>
 
                     <label htmlFor="contentPost" className="form-label">
-                        <strong>Contenuto:</strong>
+                        <FontAwesomeIcon icon="fa-solid fa-box-open" />
+                        <strong> Contenuto:</strong>
                     </label>
                     <input
                         type="text"
@@ -95,8 +100,9 @@ export default function MyFormData() {
 
                 <div>
                     <label htmlFor="categoryPost" className="form-label">
-                        <strong>Categoria:</strong>
-                    </label>
+                        <FontAwesomeIcon icon="fa-solid fa-certificate" />
+                        <strong> Categoria:</strong>
+                    </label><br />
                     <select value={formData.category_post} onChange={(e) => updateFormData(e.target.value, 'category_post')}>
                         <option value="">--Seleziona la categoria--</option>
                         <option value="Nature Notes" /*selected={formData.category_post === 'nature_notes'}*/>Nature Notes</option>
@@ -109,7 +115,8 @@ export default function MyFormData() {
                 </div>
 
                 <label htmlFor="tagsPost" className="form-label">
-                    <strong>Tags:</strong>
+                    <FontAwesomeIcon icon="fa-solid fa-hashtag" />
+                    <strong> Tags:</strong>
                 </label>
                 <div className="flex gap-4">
                     <label htmlFor="" className="px-3"><input type="checkbox" checked={formData.tags_post.includes('LifeStyle')} value="LifeStyle" onChange={handleTagsPostChange} />#LifeStyle</label>
@@ -147,7 +154,7 @@ export default function MyFormData() {
                                 <h3>{post.title_post}</h3>
 
                                 <button className={style.delete_button} onClick={() => removePost(post.id)}>
-                                    X
+                                    <FontAwesomeIcon icon="fa-solid fa-trash" />
                                 </button>
 
                             </div>
